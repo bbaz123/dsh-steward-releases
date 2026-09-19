@@ -1,1 +1,1 @@
-﻿{"name":"DSH管家","version":"1.0.0","notes":"v1.0.0 加固版：不挂起/防重入/全插件检查/官方doctor自检","url":"https://cdn.jsdelivr.net/gh/bbaz123/dsh-steward-releases@main/DSH管家.bin","sha256":"e25c834ade57f91b1c346089d68383a76b5d09c4232bcaf9af9bd0c117ed678e"}
+{"sha256":"fcf86f2c22f7aacd8acdcd7fa325b2833faa8c878e5f1569a566124294f74dda","url":"https://cdn.jsdelivr.net/gh/bbaz123/dsh-steward-releases@main/DSH管家.bin","version":"1.0.2","notes":"v1.0.2 修复版：自动复检失效/checkUpdatesOnLaunch布尔解析/预发布版本比较","name":"DSH管家"}
