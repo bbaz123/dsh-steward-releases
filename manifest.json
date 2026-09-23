@@ -1,1 +1,1 @@
-{"sha256":"fcf86f2c22f7aacd8acdcd7fa325b2833faa8c878e5f1569a566124294f74dda","url":"https://cdn.jsdelivr.net/gh/bbaz123/dsh-steward-releases@main/DSH管家.bin","version":"1.0.2","notes":"v1.0.2 修复版：自动复检失效/checkUpdatesOnLaunch布尔解析/预发布版本比较","name":"DSH管家"}
+{"sha256":"007d9ed537889d352b28c72b97f002042c916e0f6753690e564e55c6f4e18a7f","version":"1.2.1","notes":"v1.2.1：故障诊断中心 + 现场采集 + BOM 自动修复（可回滚）+ 维护隔离；新增 --diagnose/--repair/--selftest/--stop-dsh；修复受管启动句柄继承导致的管道调用卡死、配置路径转义翻倍","name":"DSH管家","url":"https://cdn.jsdelivr.net/gh/bbaz123/dsh-steward-releases@main/DSH管家.bin"}
