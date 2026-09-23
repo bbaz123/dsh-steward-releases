@@ -1,0 +1,84 @@
+name: Bug report
+description: 报告一个缺陷（DSH 起不来、诊断结论不对、修复失败或界面异常）
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。提交前请先跑一次 `DSH管家.exe --selftest`（离线沙箱，不碰真实环境）——
+        它的输出能快速区分「环境问题」和「程序问题」。
+        诊断类问题请务必附上规则号与结论，见下方字段。
+  - type: input
+    id: steward-version
+    attributes:
+      label: DSH 管家版本
+      description: 主界面版本号，或运行 `DSH管家.exe --health` 后查 `DSH管家-health.json` 的「工具自身更新」项。
+      placeholder: 1.2.1
+    validations:
+      required: true
+  - type: input
+    id: dsh-version
+    attributes:
+      label: DSH / Node 版本
+      description: 全局 dsh 版本与 `node --version` 的输出（体检 JSON 里有现成的）。
+      placeholder: dsh 0.1.5-rc.1 / node v24.19.0
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 现象与期望
+      description: 实际发生了什么？你期望发生什么？
+    validations:
+      required: true
+  - type: textarea
+    id: diagnosis
+    attributes:
+      label: 诊断结论（规则号 + 证据）
+      description: |
+        若问题由诊断链路产生：请给出【故障中心】卡片上的规则号（如 DSH-JSON-BOM-001）、
+        等级 P0~P4、自动化级别 A0~A3，以及卡片里的「证据」原文。
+        也可直接附 `diagnostics-data\diagnostics\<会话ID>\findings.json` 的摘录。
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: 复现步骤
+      description: 越具体越好；包含你点击的按钮、命令行开关与退出码（0/1/2/3）。
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: selftest
+    attributes:
+      label: --selftest 输出
+      description: 请粘贴实际输出（应 69/69；若失败请贴失败项）。
+      render: shell
+    validations:
+      required: true
+  - type: dropdown
+    id: layer
+    attributes:
+      label: 受影响的是哪一层
+      options:
+        - 诊断规则命中 / 误报
+        - 自动修复（备份、复验、回滚）
+        - 受管启动 / 接管
+        - 体检与维护（npm / dsh / 插件 / 仓库）
+        - 自动更新通道
+        - 界面与日志
+        - 文档
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: 其他信息（可选）
+      description: |
+        相关日志片段（`DSH管家.log` 末尾）、`DSH管家-health.json` 摘录、截图等。
+        粘贴前请自行确认没有不想公开的本地路径信息。
+    validations:
+      required: false

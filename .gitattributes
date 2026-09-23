@@ -1,0 +1,11 @@
+# 文本文件统一以 LF 存储，避免 Windows 检出把 CRLF 带进仓库造成无意义 diff
+* text=auto eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.mjs text eol=lf
+*.txt text eol=lf
+
+# 发布产物是二进制，禁止任何行尾/编码转换
+*.exe binary
+*.bin binary

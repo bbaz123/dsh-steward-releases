@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 先看快速开始与安装说明
+    url: https://github.com/bbaz123/dsh-steward-releases#-快速开始
+    about: 下载、校验 SHA256、安装位置与自动更新的说明都在 README 首页。
+  - name: DSH 起不来 / 网页打不开时，先按救援顺序走一遍
+    url: https://github.com/bbaz123/dsh-steward-releases/blob/main/docs/troubleshooting.md
+    about: L1→L5 的逐级处理顺序，覆盖「体检红项 ≠ 真坏了」这类常见误判。
+  - name: 诊断规则与自动化级别说明
+    url: https://github.com/bbaz123/dsh-steward-releases/blob/main/docs/diagnostics.md
+    about: 11 条规则、P0~P4 等级、A0~A3 自动化级别，以及唯一一条可自动修复的闭环。

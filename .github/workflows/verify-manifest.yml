@@ -1,0 +1,41 @@
+name: verify manifest
+
+# The three files in this repository are one contract: manifest.json describes
+# version + sha256 + url, and DSH管家.bin / DSH管家.exe must be exactly those bytes.
+# If they drift apart, installed copies either miss an update or download a file
+# that fails its own hash check — so every change to the channel is verified here.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'manifest.json'
+      - 'DSH管家.exe'
+      - 'DSH管家.bin'
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - '.github/verify-manifest.mjs'
+      - '.github/workflows/verify-manifest.yml'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: release channel integrity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # No dependency install on purpose: the checker uses Node built-ins only,
+      # so a bare checkout is enough and CI never depends on the npm registry.
+      - name: Verify manifest, binaries and version metadata
+        run: node .github/verify-manifest.mjs
