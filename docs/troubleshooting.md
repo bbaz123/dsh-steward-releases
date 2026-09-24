@@ -180,4 +180,36 @@ npm install -g @deepseek-ai/dsh@<你的插件支持的版本>
 
 ---
 
-*本手册与 DSH 管家 v1.2.1 配套。*
+## 7. 备份与恢复（v1.3.0：动手前先有退路）
+
+**纪律：任何升级 / 改配置 / 重装之前，先有一份校验通过的备份。**
+
+```powershell
+# 1) 备份（默认全量；也可只备份某几类）
+.\DSH管家.exe --backup
+.\DSH管家.exe --backup --types sessions,settings,profiles
+
+# 2) 列出并校验（缺 .sha256 一律算「无法确认」，不当通过）
+.\DSH管家.exe --backups
+.\DSH管家.exe --verify all
+
+# 3) 恢复：先预演（零改动），确认无误再执行
+.\DSH管家.exe --restore latest --dry-run
+.\DSH管家.exe --restore latest --yes
+```
+
+要点：
+
+- **恢复前会自动拍「恢复前快照」**，并把现有数据改名挪旁（`dsh-home.pre-restore-*`），**不删除**任何东西；
+- **凭据默认不进归档**：`.credentials.yaml` / `.env` 等按规则剔除，明文只写本机 `vault\`，
+  恢复时按真实剔除清单从 vault 补回；关闭脱敏需自己改配置 `backupRedactOn`（默认开）；
+- **归档只落本机磁盘**（默认桌面下的 `dsh-backups`，可用 `backupDir` 改），不涉及云端；
+- **会话文件损坏**（打不开 / 报错）用会话体检与定点修复，不要手删：
+  `.\DSH管家.exe --sessions` 先看结论，`--sessions --repair` 从已验证归档原样修回，
+  损坏现场会留档为 `*.corrupt-<时间戳>`；
+- 轮换：用户归档默认保留 7 份（`backupKeep` 可调，0 = 不自动删除）；升级前 / 恢复前快照受保护，
+  不参与用户份数轮换。
+
+---
+
+*本手册与 DSH 管家 v1.3.0 配套。*
